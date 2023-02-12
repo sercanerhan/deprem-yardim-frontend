@@ -40,6 +40,7 @@ export const Content = ({ drawerData, onCopyBillboard }: ContentProps) => {
   const data = dataTransformer(rawData);
   const size = useWindowSize();
   const { handleMarkerClick: toggler } = useMapClickHandlers();
+  console.log(drawerData);
 
   if (!drawerData) {
     return null;
