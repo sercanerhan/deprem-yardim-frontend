@@ -1,15 +1,14 @@
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import createEmotionServer from "@emotion/server/create-instance";
-import theme, { roboto } from "../utils/theme";
 import createEmotionCache from "../utils/createEmotionCache";
 
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="tr" className={`${roboto.className}`}>
+      <Html lang="tr">
         <Head>
           {/* PWA primary color */}
-          <meta name="theme-color" content={theme.palette.primary.main} />
+          <meta name="theme-color" />
           <link rel="shortcut icon" href="logo.svg" />
           <meta name="emotion-insertion-point" content="" />
           {(this.props as any).emotionStyleTags}
