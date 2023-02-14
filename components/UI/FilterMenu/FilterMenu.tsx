@@ -1,5 +1,4 @@
 import styles from "@/styles/Home.module.css";
-import { Box } from "@mui/system";
 import LocaleSwitch, { LocaleSwitchProps } from "../I18n/LocaleSwitch";
 import { ChannelFilterMenu } from "./ChannelFilterMenu";
 import { ReasonFilterMenu } from "./ReasonFilterMenu";
@@ -20,12 +19,12 @@ type FilterMenuType = React.FC<FilterMenuProps> & {
 const FilterMenu: FilterMenuType = ({ children }) => {
   const { t } = useTranslation("home");
   return (
-    <Box>
+    <div>
       <div className={styles.filterMenu}>
         <span>{t("filter.title")}</span>
         {children}
       </div>
-    </Box>
+    </div>
   );
 };
 FilterMenu.Time = TimeFilterMenu;

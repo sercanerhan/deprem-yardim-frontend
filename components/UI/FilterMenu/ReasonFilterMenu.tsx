@@ -1,10 +1,8 @@
 import { useURLActions } from "@/stores/urlStore";
-import Select, { SelectChangeEvent } from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import * as React from "react";
-import { useTranslation } from "next-i18next";
-import Checkbox from "@mui/material/Checkbox";
-import ListItemText from "@mui/material/ListItemText";
+// import { useTranslation } from "next-i18next";
+
+import { Listbox } from "@headlessui/react";
 
 const reasonFilterMenuOptions: string[] = [
   "barinma",
@@ -23,14 +21,14 @@ const reasonFilterMenuOptions: string[] = [
 ];
 
 export const ReasonFilterMenu: React.FC = () => {
-  const { t } = useTranslation("home");
+  // const { t } = useTranslation("home");
 
   const { setReasoningFilterMenuOption } = useURLActions();
   const [filterValues, setValues] = React.useState<string[]>(
     reasonFilterMenuOptions
   );
 
-  const handleChange = (event: SelectChangeEvent<any>) => {
+  const handleChange = (event: any) => {
     const {
       target: { value },
     } = event;
@@ -45,56 +43,28 @@ export const ReasonFilterMenu: React.FC = () => {
   }, [filterValues, setReasoningFilterMenuOption]);
 
   return (
-    <Select
-      sx={{
-        width: 170,
-        background: "white",
-        height: "48px",
-        borderRadius: "8px",
-      }}
-      labelId="demo-multiple-name-label"
-      id="demo-multiple-name"
+    <Listbox
       multiple
-      renderValue={(selected) =>
-        selected
-          .map((val: any) => t(`filter.reasons.${val}`).toLocaleUpperCase())
-          .join(", ")
-      }
+      // renderValue={(selected) =>
+      //   selected
+      //     .map((val: any) => t(`filter.reasons.${val}`).toLocaleUpperCase())
+      //     .join(", ")
+      // }
       value={filterValues}
       onChange={handleChange}
     >
       {reasonFilterMenuOptions.map((item, i) => (
-        <MenuItem
-          sx={{
-            maxWidth: "170px",
-            padding: "4px",
-          }}
-          key={i}
-          value={item}
-        >
-          <Checkbox
-            size="small"
-            sx={{
-              padding: "0",
-              margin: "0",
-            }}
-            checked={filterValues.indexOf(item) > -1}
-          />
+        //          value={item}
+        <div key={i}>
+          <input type="checkbox" checked={filterValues.indexOf(item) > -1} />
 
-          <ListItemText
-            disableTypography
-            sx={{
-              padding: "0",
-              margin: "0 4px",
-              overflow: "hidden",
-              textOverflow: "ellipsis",
-              fontSize: "14px",
-              whiteSpace: "nowrap",
-            }}
-            primary={t(`filter.reasons.${item}`).toLocaleUpperCase()}
+          <p
+          // disableTypography
+
+          // primary={t(`filter.reasons.${item}`).toLocaleUpperCase()}
           />
-        </MenuItem>
+        </div>
       ))}
-    </Select>
+    </Listbox>
   );
 };

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Menu, MenuItem } from "@mui/material";
 import FilterMenuButton from "./FilterMenuButton";
 import { useTranslation } from "next-i18next";
+import { Menu } from "@headlessui/react";
 
 type TimeOption =
   | "last30Minutes"
@@ -89,7 +89,7 @@ const FilterTimeMenu: React.FC<FilterTimeMenuProps> = ({
     setAnchorEl(null);
   };
 
-  const handleMenuItemClick = (event: React.MouseEvent<HTMLLIElement>) => {
+  const handleMenuItemClick = (event: React.MouseEvent<HTMLElement>) => {
     const value = event.currentTarget.dataset.value as TimeOption;
 
     setSelectedValue(value);
@@ -139,16 +139,17 @@ const FilterTimeMenu: React.FC<FilterTimeMenuProps> = ({
           }`
         )}
       </FilterMenuButton>
-      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+      {/* anchorEl={anchorEl} open={open} onClose={handleClose} */}
+      <Menu>
         {FilterOptions.map((option) => (
-          <MenuItem
+          <button
             key={option.value}
             onClick={handleMenuItemClick}
             data-value={option.value}
-            disableRipple
+            // disableRipple
           >
             {t(`filter.time.${option.label}`)}
-          </MenuItem>
+          </button>
         ))}
       </Menu>
     </>

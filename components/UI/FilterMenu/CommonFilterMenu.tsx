@@ -1,7 +1,7 @@
 import { useEffect, useState, MouseEvent, ReactElement } from "react";
-import { Menu, MenuItem } from "@mui/material";
 import FilterMenuButton from "./FilterMenuButton";
 import { useTranslation } from "next-i18next";
+import { Menu } from "@headlessui/react";
 
 export type FilterMenuOption<ValueType> = {
   label: string;
@@ -22,6 +22,8 @@ function CommonFilterMenu<ValueType>({
   translationPath,
 }: FilterMenuProps<ValueType>): ReactElement {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
+
+  // eslint-disable-next-line no-unused-vars
   const [selectedValue, setSelectedValue] = useState<ValueType>(initialValue);
   const { t } = useTranslation("home");
   const open = Boolean(anchorEl);
@@ -30,15 +32,15 @@ function CommonFilterMenu<ValueType>({
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
-    setAnchorEl(null);
-  };
+  // const handleClose = () => {
+  //   setAnchorEl(null);
+  // };
 
-  const handleMenuItemClick = (event: MouseEvent<HTMLLIElement>) => {
-    const value = (event.currentTarget.dataset.value ?? null) as ValueType;
-    setSelectedValue(value);
-    handleClose();
-  };
+  // const handleMenuItemClick = (event: MouseEvent<HTMLLIElement>) => {
+  //   const value = (event.currentTarget.dataset.value ?? null) as ValueType;
+  //   setSelectedValue(value);
+  //   handleClose();
+  // };
 
   useEffect(() => {
     onChange(selectedValue);
@@ -56,16 +58,16 @@ function CommonFilterMenu<ValueType>({
       >
         {t(`${translationPath}.${selectedLabel}`).toLocaleUpperCase()}
       </FilterMenuButton>
-      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
+      {/* anchorEl={anchorEl} 
+      open={open} 
+       onClose={handleClose}
+       */}
+      <Menu>
         {menuOptions.map((option) => (
-          <MenuItem
-            key={option.label}
-            onClick={handleMenuItemClick}
-            data-value={option.value}
-            disableRipple
-          >
-            {t(`${translationPath}.${option.label}`)}
-          </MenuItem>
+          <Menu.Items key={option.label} data-value={option.value}>
+            {/*  onClick={handleMenuItemClick} disableRipple */}
+            <div>{t(`${translationPath}.${option.label}`)}</div>
+          </Menu.Items>
         ))}
       </Menu>
     </>

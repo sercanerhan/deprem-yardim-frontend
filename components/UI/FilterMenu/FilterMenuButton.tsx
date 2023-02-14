@@ -1,4 +1,3 @@
-import { Button, SxProps, Theme } from "@mui/material";
 import type { MouseEvent } from "react";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
@@ -8,7 +7,6 @@ type FilterMenuButtonProps = {
   open: boolean;
   children: React.ReactNode;
   ariaControls?: string;
-  sx?: SxProps<Theme> | undefined;
 };
 
 const FilterMenuButton: React.FC<FilterMenuButtonProps> = ({
@@ -16,31 +14,21 @@ const FilterMenuButton: React.FC<FilterMenuButtonProps> = ({
   onClick,
   open,
   ariaControls,
-  sx = {
-    background: "white",
-    color: "#344054",
-    "&:hover": { background: "white" },
-    border: "1px solid #BABBBE",
-    borderRadius: "8px",
-    height: "48px",
-  },
 }) => {
   return (
-    <Button
+    <button
       aria-controls={open ? ariaControls : undefined}
       aria-haspopup="true"
       aria-expanded={open ? "true" : undefined}
-      sx={sx}
-      variant="contained"
-      disableElevation
+      // disableElevation
       onClick={onClick}
-      endIcon={<KeyboardArrowDownIcon />}
-      disableFocusRipple
-      disableRipple
-      disableTouchRipple
+      // disableFocusRipple
+      // disableRipple
+      // disableTouchRipple
     >
+      <KeyboardArrowDownIcon />
       {children}
-    </Button>
+    </button>
   );
 };
 
