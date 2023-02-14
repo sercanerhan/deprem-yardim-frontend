@@ -10,7 +10,6 @@ import { useRouter } from "next/router";
 import { Content } from "./components/Content";
 import { LayerContent } from "./components/LayerContent";
 import { useTranslation } from "next-i18next";
-import { useSnackbar } from "@/components/base/Snackbar";
 
 const Drawer = () => {
   useDisableZoom();
@@ -20,11 +19,9 @@ const Drawer = () => {
   const { setUrlQuery } = useUrlPath();
   const size = useWindowSize();
   const { t } = useTranslation("home");
-  const { enqueueInfo } = useSnackbar();
 
   function copyBillboard(url: string) {
     navigator.clipboard.writeText(url);
-    enqueueInfo(t("cluster.copiedMapLinkSuccessfully"));
   }
 
   const { handleMarkerClick: toggler } = useMapClickHandlers();

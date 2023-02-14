@@ -1,3 +1,4 @@
+/* eslint-disable */
 import {
   AhbapData,
   SahraKitchenData,
@@ -5,12 +6,6 @@ import {
   TeleteyitData,
 } from "@/components/UI/Drawer/components/types";
 import { create } from "zustand";
-import {
-  ClusterPopupData,
-  MarkerData,
-  EVENT_TYPES,
-  DeviceType,
-} from "@/mocks/types";
 
 export enum MapType {
   Terrain = "p",

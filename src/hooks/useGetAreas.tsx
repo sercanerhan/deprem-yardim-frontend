@@ -1,6 +1,5 @@
-import { MaintenanceError, PartialDataError } from "@/errors";
+import { PartialDataError } from "@/errors";
 import useIncrementalThrottling from "@/hooks/useIncrementalThrottling";
-import { DataLite } from "@/mocks/TypesAreasEndpoint";
 import { dataFetcher } from "@/services/dataFetcher";
 import { useEventType, setMarkerData } from "@/stores/mapStore";
 import {
@@ -13,7 +12,6 @@ import { REQUEST_THROTTLING_INITIAL_SEC } from "@/utils/constants";
 import { dataTransformerLite } from "@/utils/dataTransformer";
 import { areasURL } from "@/utils/urls";
 import { useState, useEffect, useCallback } from "react";
-import { useSnackbar } from "@/components/base/Snackbar";
 import useSWR from "swr";
 import { useTranslation } from "next-i18next";
 
@@ -33,12 +31,9 @@ export function useGetAreas() {
 
   const { t } = useTranslation(["common"]);
 
-  const { enqueueWarning } = useSnackbar();
-
-  useEffect(() => {
-    error && enqueueWarning(t("common:errors.partialData"));
-    // ts-expect-error adding enqueue warning rerenders
-  }, [error]);
+  // useEffect(() => {
+  //   // ts-expect-error adding enqueue warning rerenders
+  // }, [error]);
 
   useEffect(() => {
     if (!coordinates) return;

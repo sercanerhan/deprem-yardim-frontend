@@ -1,8 +1,6 @@
 import useSWR from "swr";
 import formatcoords from "formatcoords";
 import { dataTransformer } from "@/utils/dataTransformer";
-import { Data } from "@/mocks/TypesAreasEndpoint";
-import { MarkerData } from "@/mocks/types";
 import { getTimeAgo } from "@/utils/date";
 // import { useWindowSize } from "@/hooks/useWindowSize";
 import { useMapClickHandlers } from "@/hooks/useMapClickHandlers";

@@ -1,4 +1,3 @@
-import { MarkerData } from "@/mocks/types";
 import { HeatmapLayerFactory } from "@vgrid/react-leaflet-heatmap-layer";
 import { memo, useCallback } from "react";
 import { AhbapClusterGroup } from "./AhbapClusterGroup";
@@ -15,7 +14,7 @@ export type Point = [number, number, number];
 
 type Props = {
   points: Point[];
-  data: MarkerData[];
+  data: any[];
   food: any[];
   ahbap: any[];
   hospital: any[];

@@ -5,7 +5,6 @@ import Drawer from "@/components/UI/Drawer/Drawer";
 import FooterBanner from "@/components/UI/FooterBanner/FooterBanner";
 import SitesIcon from "@/components/UI/SitesIcon/Icons";
 import { MaintenanceError } from "@/errors";
-import { DeviceType } from "@/mocks/types";
 import { dataFetcher } from "@/services/dataFetcher";
 import { useMapActions, useDevice } from "@/stores/mapStore";
 import styles from "@/styles/Home.module.css";

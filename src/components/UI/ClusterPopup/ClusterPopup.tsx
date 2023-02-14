@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 
-import { useSnackbar } from "@/components/base/Snackbar";
 // import { useWindowSize } from "@/hooks/useWindowSize";
 import { useMapActions, usePopUpData } from "@/stores/mapStore";
 import formatcoords from "formatcoords";
@@ -17,7 +16,6 @@ const ClusterPopup = () => {
   const { t } = useTranslation("home");
   useDisableZoom();
   const { setPopUpData } = useMapActions();
-  const { enqueueInfo, closeSnackbar } = useSnackbar();
   // const windowSize = useWindowSize();
 
   const [copyButtonClicked, setCopyButtonClicked] = useState<boolean>(false);
@@ -26,16 +24,6 @@ const ClusterPopup = () => {
   const lat = data?.baseMarker.geometry.location.lat ?? 0;
   const lng = data?.baseMarker.geometry.location.lng ?? 0;
   const tag = findTagByClusterCount(data?.count ?? 0);
-
-  useEffect(() => {
-    if (copyButtonClicked) {
-      enqueueInfo(t("cluster.actions.copied").toString());
-      setCopyButtonClicked(false);
-      setTimeout(() => {
-        closeSnackbar();
-      }, 3000);
-    }
-  }, [copyButtonClicked, enqueueInfo, closeSnackbar, t]);
 
   if (!data) return null;
 

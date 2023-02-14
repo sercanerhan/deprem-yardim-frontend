@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   AHBAP_LOCATIONS_URL,
   HOSPITAL_LOCATIONS_URL,
@@ -12,7 +12,6 @@ import useSWR from "swr";
 import { dataFetcher } from "@/services/dataFetcher";
 import dJSON from "dirty-json";
 import { PartialDataError } from "@/errors";
-import { useSnackbar } from "@/components/base/Snackbar";
 import { useTranslation } from "next-i18next";
 
 export function useVerifiedLocations() {
@@ -25,13 +24,7 @@ export function useVerifiedLocations() {
   const [pharmacyLocations, setPharmacyLocations] = useState<any[]>([]);
   const [errors, setErrors] = useState<Error[]>([]);
 
-  const { enqueueWarning } = useSnackbar();
   const { t } = useTranslation(["common"]);
-
-  useEffect(() => {
-    errors.length && enqueueWarning(t("common:errors.partialData"));
-    // ts-expect-error adding enqueue warning rerenders
-  }, [errors]);
 
   useSWR(FOOD_URL, dataFetcher, {
     onSuccess: (data) => {

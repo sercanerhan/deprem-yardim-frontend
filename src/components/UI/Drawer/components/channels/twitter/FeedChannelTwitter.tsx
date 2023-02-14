@@ -1,6 +1,5 @@
-import useSnackbarHook from "@/components/base/Snackbar/useSnackbar";
 import { useTranslation } from "next-i18next";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { FeedChannelTwitterProps } from "../../types";
 import EmbedTweet from "./EmbedTweet";
 import styles from "./FeedChannelTwitter.module.css";
@@ -15,12 +14,11 @@ const FeedChannelTwitter = ({
 }: FeedChannelTwitterProps) => {
   const { t } = useTranslation("home");
   const [showSavedData, setShowSavedData] = useState(true);
-  const { enqueueInfo } = useSnackbarHook();
 
-  const handleClickCopyFullText = useCallback(() => {
-    navigator.clipboard.writeText(full_text as string);
-    enqueueInfo(t("cluster.copiedContentSuccessfully"));
-  }, [full_text, t, enqueueInfo]);
+  // const handleClickCopyFullText = useCallback(() => {
+  //   navigator.clipboard.writeText(full_text as string);
+  //   enqueueInfo(t("cluster.copiedContentSuccessfully"));
+  // }, [full_text, t, enqueueInfo]);
 
   return (
     <div className={styles.sourceContent}>
@@ -47,7 +45,7 @@ const FeedChannelTwitter = ({
         <EmbedTweet reason={reason || ""} source={extra_parameters!} />
       )}
       {!!full_text && (
-        <button onClick={handleClickCopyFullText}>
+        <button>
           {/* copy all */}
           <svg className={styles.btnIcon} />
 

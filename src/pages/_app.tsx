@@ -7,7 +7,6 @@ import { CacheProvider, EmotionCache } from "@emotion/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import createEmotionCache from "../utils/createEmotionCache";
-import { SnackbarProvider } from "@/components/base/Snackbar";
 import { appWithTranslation } from "next-i18next";
 
 // Client-side cache, shared for the whole session of the user in the browser.
@@ -15,10 +14,6 @@ const clientSideEmotionCache = createEmotionCache();
 
 interface MyAppProps extends AppProps {
   emotionCache?: EmotionCache;
-}
-
-if (process.env.NEXT_PUBLIC_API_MOCKING === "enabled") {
-  require("../mocks");
 }
 
 function MyApp(props: MyAppProps) {
@@ -35,10 +30,8 @@ function MyApp(props: MyAppProps) {
   return (
     <ErrorBoundary>
       <CacheProvider value={emotionCache}>
-        <SnackbarProvider>
-          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <Component {...pageProps} />
-        </SnackbarProvider>
+        {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+        <Component {...pageProps} />
       </CacheProvider>
     </ErrorBoundary>
   );
