@@ -1,7 +1,6 @@
 import React, { ReactNode } from "react";
 import { Apple, DriveEta, Google } from "@mui/icons-material";
 import styles from "../Drawer.module.css";
-import Button from "@mui/material/Button";
 import { MarkerData } from "@/mocks/types";
 import { useTranslation } from "next-i18next";
 import {
@@ -87,21 +86,18 @@ export default function MapButtons({ drawerData }: Props) {
   return (
     <div className={styles.contentButtons}>
       {mapsButtons.map((button) => (
-        <Button
+        <button
           key={t(`cluster.mapButtons.${button.label}`).toString()}
-          variant="contained"
           onClick={() => {
             button.urlCallback(
               drawerData.geometry.location.lat,
               drawerData.geometry.location.lng
             );
           }}
-          color={button.color}
           className={styles.externalLinkButton}
-          startIcon={button.icon}
         >
           {t(`cluster.mapButtons.${button.label}`)}
-        </Button>
+        </button>
       ))}
     </div>
   );

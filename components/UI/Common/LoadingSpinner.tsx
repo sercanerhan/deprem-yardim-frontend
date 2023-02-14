@@ -1,6 +1,8 @@
 import styles from "./LoadingSpinner.module.css";
 import { useTranslation } from "next-i18next";
 
+// no need to migrate to tailwind
+
 type LoadingProps = {
   slowLoading: boolean;
 };

@@ -4,16 +4,10 @@ import { dataTransformer } from "@/utils/dataTransformer";
 import { Data } from "@/mocks/TypesAreasEndpoint";
 import { MarkerData } from "@/mocks/types";
 import { getTimeAgo } from "@/utils/date";
-import { useWindowSize } from "@/hooks/useWindowSize";
+// import { useWindowSize } from "@/hooks/useWindowSize";
 import { useMapClickHandlers } from "@/hooks/useMapClickHandlers";
 import { locationsURL } from "@/utils/urls";
 import { dataFetcher } from "@/services/dataFetcher";
-import { CopyAll, OpenInNew } from "@mui/icons-material";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import CloseIcon from "@mui/icons-material/Close";
-import CircularProgress from "@mui/material/CircularProgress";
 import styles from "../Drawer.module.css";
 import FeedContent from "./channels/FeedContent";
 import GenericError from "../../GenericError/GenericError";
@@ -28,6 +22,9 @@ import {
 } from "./types";
 import { CloseByRecord } from "./OtherRecordsInSameLocation";
 import { useRouter } from "next/router";
+
+import CloseIcon from "@mui/icons-material/Close";
+import CircularProgress from "@mui/material/CircularProgress";
 
 export interface ContentProps {
   // eslint-disable-next-line no-unused-vars
@@ -53,7 +50,7 @@ export const Content = ({ drawerData, onCopyBillboard }: ContentProps) => {
     dataFetcher
   );
   const data = dataTransformer(rawData);
-  const size = useWindowSize();
+  // const size = useWindowSize();
   const { handleMarkerClick: toggler } = useMapClickHandlers();
   const router = useRouter();
   const locale = router.locale;
@@ -81,29 +78,11 @@ export const Content = ({ drawerData, onCopyBillboard }: ContentProps) => {
 
   // @ts-ignore
   return (
-    <Box
-      sx={{
-        width: size.width > 768 ? 400 : "full",
-        display: "flex",
-        height: "100%",
-        padding: "1rem 2rem 1rem 1rem",
-        flexDirection: "column",
-        overflow: "auto",
-      }}
-      role="presentation"
-      onKeyDown={(e) => toggler(e)}
-    >
+    <div role="presentation" onKeyDown={(e) => toggler(e)}>
       {isLoading && (
-        <Box
-          sx={{
-            minHeight: "300px",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
+        <div>
           <CircularProgress />
-        </Box>
+        </div>
       )}
       {error && <GenericError />}
       {!isLoading && (
@@ -133,50 +112,33 @@ export const Content = ({ drawerData, onCopyBillboard }: ContentProps) => {
           </div>
           <MapButtons drawerData={drawerData} />
           <div>
-            <TextField
-              fullWidth
-              variant="standard"
-              size="small"
+            <input
               value={generateGoogleMapsUrl(
                 drawerData.geometry.location.lat,
                 drawerData.geometry.location.lng
               )}
-              InputProps={{
-                readOnly: true,
-              }}
             />
             <div className={styles.actionButtons}>
-              <Button
-                variant="outlined"
-                className={styles.clipboard}
-                size="small"
-                fullWidth
+              <div
                 onClick={() =>
                   onCopyBillboard(
                     `https://www.google.com/maps/@${drawerData.geometry.location.lat.toString()},${drawerData.geometry.location.lng.toString()},22z`
                   )
                 }
-                startIcon={<CopyAll className={styles.btnIcon} />}
               >
                 {t("cluster.mapButtons.copy")}
-              </Button>
+              </div>
               {hasSource && (
-                <Button
-                  variant="outlined"
-                  className={styles.clipboard}
-                  fullWidth
-                  size="small"
+                <div
                   onClick={() =>
                     window.open(
                       // @ts-ignore: tweet_id generic olmadığı için kızıyor, type ile fixlenebilir
                       `https://twitter.com/anyuser/status/${data.extra_parameters?.tweet_id}`
                     )
                   }
-                  startIcon={<OpenInNew className={styles.btnIcon} />}
-                  color="secondary"
                 >
                   {t("content.source")}
-                </Button>
+                </div>
               )}
             </div>
           </div>
@@ -195,6 +157,6 @@ export const Content = ({ drawerData, onCopyBillboard }: ContentProps) => {
       <CloseByRecord drawerData={drawerData} />
 
       <CloseIcon onClick={(e) => toggler(e)} className={styles.closeButton} />
-    </Box>
+    </div>
   );
 };

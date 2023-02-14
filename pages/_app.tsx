@@ -3,12 +3,10 @@ import ErrorBoundary from "@/components/base/ErrorBoundary";
 import { getCookie, setCookie } from "@/utils/cookie";
 
 import { AppProps } from "next/app";
-import { ThemeProvider } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import theme from "../utils/theme";
 import createEmotionCache from "../utils/createEmotionCache";
 import { SnackbarProvider } from "@/components/base/Snackbar";
 import { appWithTranslation } from "next-i18next";
@@ -38,13 +36,11 @@ function MyApp(props: MyAppProps) {
   return (
     <ErrorBoundary>
       <CacheProvider value={emotionCache}>
-        <ThemeProvider theme={theme}>
-          <SnackbarProvider>
-            {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-            <CssBaseline />
-            <Component {...pageProps} />
-          </SnackbarProvider>
-        </ThemeProvider>
+        <SnackbarProvider>
+          {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
+          <CssBaseline />
+          <Component {...pageProps} />
+        </SnackbarProvider>
       </CacheProvider>
     </ErrorBoundary>
   );

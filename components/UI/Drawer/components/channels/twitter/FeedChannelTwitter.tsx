@@ -1,14 +1,14 @@
 import useSnackbarHook from "@/components/base/Snackbar/useSnackbar";
-import { CopyAll } from "@mui/icons-material";
-import { Button } from "@mui/material";
-import Switch from "@mui/material/Switch";
-import Typography from "@mui/material/Typography";
 import { useTranslation } from "next-i18next";
 import { useCallback, useState } from "react";
 import { FeedChannelTwitterProps } from "../../types";
 import EmbedTweet from "./EmbedTweet";
 import styles from "./FeedChannelTwitter.module.css";
 import PlaceholderTweet from "./PlaceholderTweet";
+
+import { CopyAll } from "@mui/icons-material";
+
+import { Switch } from "@headlessui/react";
 
 const FeedChannelTwitter = ({
   reason,
@@ -27,9 +27,7 @@ const FeedChannelTwitter = ({
   return (
     <div className={styles.sourceContent}>
       <div className={styles.sourceHelpContent}>
-        <Typography className={styles.sourceContentTitle}>
-          {t("content.helpContent")}
-        </Typography>
+        <p className={styles.sourceContentTitle}>{t("content.helpContent")}</p>
 
         {extra_parameters && extra_parameters.name && (
           <div className={styles.sourceContentSwitch}>
@@ -51,15 +49,11 @@ const FeedChannelTwitter = ({
         <EmbedTweet reason={reason || ""} source={extra_parameters!} />
       )}
       {!!full_text && (
-        <Button
-          variant="outlined"
-          size="small"
-          fullWidth
-          onClick={handleClickCopyFullText}
-          startIcon={<CopyAll className={styles.btnIcon} />}
-        >
+        <button onClick={handleClickCopyFullText}>
+          <CopyAll className={styles.btnIcon} />
+
           {t("cluster.copyFullText")}
-        </Button>
+        </button>
       )}
     </div>
   );

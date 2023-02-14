@@ -2,28 +2,12 @@ import React from "react";
 
 import { useWindowSize } from "@/hooks/useWindowSize";
 import FileCopyIcon from "@mui/icons-material/FileCopy";
-import { Button, Typography } from "@mui/material";
-
-type IconButtonProps = React.ComponentProps<typeof Button> & {
-  iconProps?: React.ComponentProps<typeof FileCopyIcon>;
-};
 
 function copyBillboard(url: string) {
   navigator.clipboard.writeText(url);
 }
 
-export interface CopyButtonProps extends IconButtonProps {
-  data: string;
-  title?: string;
-}
-
-export function CopyButton({
-  data,
-  title,
-  onClick,
-  iconProps,
-  ...props
-}: CopyButtonProps) {
+export function CopyButton({ data, title, onClick, iconProps, ...props }: any) {
   const windowSize = useWindowSize();
 
   const handleCopyButtonClick = (
@@ -34,13 +18,10 @@ export function CopyButton({
     onClick?.(event);
   };
   return (
-    <Button {...props} onClick={handleCopyButtonClick}>
+    <button {...props} onClick={handleCopyButtonClick}>
+      aa
       <FileCopyIcon fontSize="small" {...iconProps} />
-      {title && windowSize.width < 600 && (
-        <Typography fontSize="12px" sx={{ textTransform: "none" }}>
-          {title}
-        </Typography>
-      )}
-    </Button>
+      {title && windowSize.width < 600 && <p>{title}</p>}
+    </button>
   );
 }

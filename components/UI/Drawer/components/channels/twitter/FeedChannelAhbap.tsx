@@ -1,6 +1,4 @@
-import Typography from "@mui/material/Typography";
 import { FeedChannelAhbapProps } from "../../types";
-import { Divider } from "@mui/material";
 import { CHANNEL_AHBAP_TYPES } from "@/utils/constants";
 
 const getTypeLabel = (type: string) => {
@@ -23,12 +21,12 @@ export const FeedChannelAhbap = ({
     <>
       <div style={styles.container}>
         <div style={styles.logo_container}>
-          <Typography style={styles.logo}>Ahbap</Typography>
+          <p style={styles.logo}>Ahbap</p>
           <img style={styles.icon} src={icon} alt={getTypeLabel(type)} />
         </div>
-        <Divider />
-        <Typography style={styles.name}>{getTypeLabel(type)}</Typography>
-        <Typography style={styles.description}>{`${description}`}</Typography>
+        <div className={styles.divider} />
+        <p style={styles.name}>{getTypeLabel(type)}</p>
+        <p style={styles.description}>{`${description}`}</p>
       </div>
     </>
   );

@@ -1,6 +1,5 @@
 import { MarkerData } from "@/mocks/types";
 import { useMapActions } from "@/stores/mapStore";
-import { Box, Button, Typography } from "@mui/material";
 import { Trans, useTranslation } from "next-i18next";
 import {
   AhbapData,
@@ -41,35 +40,23 @@ export const CloseByRecord = ({ drawerData }: Props) => {
     setDrawerData(tempDrawerData);
   };
   return (
-    <Box>
-      <Typography
-        sx={{
-          fontSize: "18px",
-          fontWeight: "bold",
-          borderTop: "1px solid gray",
-          marginTop: "1rem",
-          paddingTop: "1rem",
-        }}
-      >
-        {t("content.closeBy.title")}
-      </Typography>
-      <Typography>
+    <div>
+      <p>{t("content.closeBy.title")}</p>
+      <p>
         <Trans
           i18nKey="home:content.closeBy.details"
           components={{ b: <b /> }}
         />
-      </Typography>
+      </p>
       {drawerData.closeByRecords.map((record) => (
-        <Button
-          variant={record === drawerData.reference ? "contained" : "outlined"}
+        <button
+          // variant={record === drawerData.reference ? "contained" : "outlined"}
           onClick={onClick(record)}
-          size="small"
-          sx={{ margin: ".5rem .5rem 0 0" }}
           key={record}
         >
           ID: {record}
-        </Button>
+        </button>
       ))}
-    </Box>
+    </div>
   );
 };

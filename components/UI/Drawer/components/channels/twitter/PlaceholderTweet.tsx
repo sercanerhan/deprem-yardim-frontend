@@ -1,7 +1,6 @@
-import Typography from "@mui/material/Typography";
 import TwitterLogo from "./TwitterLogo";
 import { FeedChannelTwitterProps, TwitterParameters } from "../../types";
-import { capitalize, Chip } from "@mui/material";
+import { capitalize } from "@/utils/helpers";
 import { isNaN } from "@/utils/helpers";
 
 type Props = {
@@ -39,11 +38,13 @@ const PlaceholderTweet = ({ source, reason, full_text }: Props) => {
             <TwitterLogo />
           </div>
         </div>
-        <Typography style={styles.fullText}>{full_text}</Typography>
+        <p>{full_text}</p>
         <div style={styles.chipContainer}>
           {!isNaN(reason) &&
             reasons.map((reason, i) => (
-              <Chip style={styles.chip} key={i} label={reason} color="info" />
+              <p style={styles.chip} key={i} color="info">
+                {reason}
+              </p>
             ))}
         </div>
       </div>

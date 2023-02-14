@@ -1,4 +1,3 @@
-import { Typography } from "@mui/material";
 import styles from "./LayerButton.module.css";
 
 type LayerButtonProps = {
@@ -33,11 +32,7 @@ export const LayerButton = ({
           backgroundImage: `url(/images/${image}.png)`,
         }}
       />
-      <Typography
-        sx={{ color: checked ? "teal" : undefined, fontSize: "12px" }}
-      >
-        {title}
-      </Typography>
+      <p>{title}</p>
     </button>
   );
 };

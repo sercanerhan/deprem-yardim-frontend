@@ -1,5 +1,5 @@
 import { DrawerContent } from "@/components/UI/Drawer/components/channels/DrawerContent";
-import capitalize from "@mui/utils/capitalize";
+import { capitalize } from "@/utils/helpers";
 
 interface FeedChannelPharmacyProps {
   channel: string;

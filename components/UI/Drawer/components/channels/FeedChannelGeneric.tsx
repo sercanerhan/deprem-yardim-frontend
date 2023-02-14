@@ -1,4 +1,3 @@
-import Typography from "@mui/material/Typography";
 import { BaseFeedChannel } from "../types";
 
 const FeedChannelGeneric = ({ full_text }: BaseFeedChannel<any>) => {
@@ -6,7 +5,7 @@ const FeedChannelGeneric = ({ full_text }: BaseFeedChannel<any>) => {
     <>
       <div style={styles.container}>
         <div style={styles.user}></div>
-        <Typography style={styles.fullText}>{full_text}</Typography>
+        <p style={styles.fullText}>{full_text}</p>
       </div>
     </>
   );
