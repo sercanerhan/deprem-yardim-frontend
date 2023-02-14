@@ -1,5 +1,4 @@
 import React, { ReactNode } from "react";
-import { Apple, DriveEta, Google } from "@mui/icons-material";
 import styles from "../Drawer.module.css";
 import { MarkerData } from "@/mocks/types";
 import { useTranslation } from "next-i18next";
@@ -54,19 +53,19 @@ export const mapsButtons: MapsButton[] = [
   {
     label: "google",
     urlCallback: openGoogleMapsUrl,
-    icon: <Google className={styles.btnIcon} />,
+    icon: <svg className={styles.btnIcon} />,
     color: "primary",
   },
   {
     label: "apple",
     urlCallback: openAppleMapsUrl,
-    icon: <Apple className={styles.btnIcon} />,
+    icon: <svg className={styles.btnIcon} />,
     color: "inherit",
   },
   {
     label: "direction",
     urlCallback: openGoogleMapsDirectionUrl,
-    icon: <DriveEta className={styles.btnIcon} />,
+    icon: <svg className={styles.btnIcon} />,
     color: "secondary",
   },
 ];

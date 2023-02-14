@@ -1,5 +1,3 @@
-import Close from "@mui/icons-material/Close";
-import { IconButton } from "@mui/material";
 import { SnackbarKey } from "notistack";
 import React, { useCallback } from "react";
 import useSnackbarHook from "./useSnackbar";
@@ -16,13 +14,10 @@ const SnackbarCloseButton: React.FC<SnackbarCloseButtonProps> = ({ key }) => {
   }, [closeSnackbar, key]);
 
   return (
-    <IconButton size={"medium"} onClick={handleClick}>
-      <Close
-        style={{
-          color: "white",
-        }}
-      />
-    </IconButton>
+    <div onClick={handleClick}>
+      {/* // Close */}
+      <svg />
+    </div>
   );
 };
 

@@ -63,12 +63,14 @@ function CommonFilterMenu<ValueType>({
        onClose={handleClose}
        */}
       <Menu>
-        {menuOptions.map((option) => (
-          <Menu.Items key={option.label} data-value={option.value}>
-            {/*  onClick={handleMenuItemClick} disableRipple */}
-            <div>{t(`${translationPath}.${option.label}`)}</div>
-          </Menu.Items>
-        ))}
+        <Menu.Items>
+          {menuOptions.map((option) => (
+            <Menu.Item key={option.label} data-value={option.value}>
+              {/*  onClick={handleMenuItemClick} disableRipple */}
+              <div>{t(`${translationPath}.${option.label}`)}</div>
+            </Menu.Item>
+          ))}
+        </Menu.Items>
       </Menu>
     </>
   );

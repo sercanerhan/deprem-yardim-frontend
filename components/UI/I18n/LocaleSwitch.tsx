@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
-import { Menu, MenuItem } from "@mui/material";
-import TranslateIcon from "@mui/icons-material/Translate";
 import FilterMenuButton from "@/components/UI/FilterMenu/FilterMenuButton";
+
+import { Menu } from "@headlessui/react";
 
 type Language = {
   locale: string;
@@ -53,35 +54,22 @@ const LocaleSwitch: React.FC<LocaleSwitchProps> = ({
         ariaControls="locale-menu"
         open={open}
         onClick={handleClick}
-        sx={{
-          background: "white",
-          color: "#344054",
-          "&:hover": { background: "white" },
-          border: "1px solid #BABBBE",
-          borderRadius: "8px",
-          height: mobile ? "32px" : "36px",
-          fontSize: mobile ? "12px" : "14px",
-        }}
       >
-        <TranslateIcon
-          sx={{
-            fontSize: mobile ? "16px" : "20px",
-          }}
-        ></TranslateIcon>
+        {/* HighlightOffIcon */}
+        <svg></svg>
         &nbsp;&nbsp;
         {languages.find((language) => language.locale === current)?.text}
       </FilterMenuButton>
-      <Menu anchorEl={anchorEl} open={open} onClose={handleClose}>
-        {languages.map((language) => (
-          <MenuItem
-            key={language.locale}
-            onClick={handleMenuItemClick(language)}
-            data-value={language.locale}
-            disableRipple
-          >
-            {language.text}
-          </MenuItem>
-        ))}
+      {/*  anchorEl={anchorEl} open={open} onClose={handleClose} */}
+      <Menu>
+        <Menu.Items>
+          {languages.map((language) => (
+            // onClick={handleMenuItemClick(language)}
+            // data-value={language.locale}
+            // disableRipple
+            <Menu.Item key={language.locale}>{language.text}</Menu.Item>
+          ))}
+        </Menu.Items>
       </Menu>
     </>
   );

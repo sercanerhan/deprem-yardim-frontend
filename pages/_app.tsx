@@ -3,7 +3,6 @@ import ErrorBoundary from "@/components/base/ErrorBoundary";
 import { getCookie, setCookie } from "@/utils/cookie";
 
 import { AppProps } from "next/app";
-import CssBaseline from "@mui/material/CssBaseline";
 import { CacheProvider, EmotionCache } from "@emotion/react";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -38,7 +37,6 @@ function MyApp(props: MyAppProps) {
       <CacheProvider value={emotionCache}>
         <SnackbarProvider>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
-          <CssBaseline />
           <Component {...pageProps} />
         </SnackbarProvider>
       </CacheProvider>

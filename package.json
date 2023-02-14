@@ -34,8 +34,6 @@
   "dependencies": {
     "@20tab/react-leaflet-resetview": "^1.1.0",
     "@headlessui/react": "^1.7.10",
-    "@mui/icons-material": "latest",
-    "@mui/material": "latest",
     "@next/font": "13.1.6",
     "@vgrid/react-leaflet-heatmap-layer": "^4.0.3",
     "autoprefixer": "^10.4.13",

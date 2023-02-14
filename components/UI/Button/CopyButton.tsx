@@ -1,7 +1,6 @@
 import React from "react";
 
 import { useWindowSize } from "@/hooks/useWindowSize";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
 
 function copyBillboard(url: string) {
   navigator.clipboard.writeText(url);
@@ -19,8 +18,8 @@ export function CopyButton({ data, title, onClick, iconProps, ...props }: any) {
   };
   return (
     <button {...props} onClick={handleCopyButtonClick}>
-      aa
-      <FileCopyIcon fontSize="small" {...iconProps} />
+      {/* // Copy */}
+      <svg fontSize="small" {...iconProps} />
       {title && windowSize.width < 600 && <p>{title}</p>}
     </button>
   );

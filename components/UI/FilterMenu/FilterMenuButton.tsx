@@ -1,5 +1,4 @@
 import type { MouseEvent } from "react";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 type FilterMenuButtonProps = {
   // eslint-disable-next-line no-unused-vars
@@ -26,7 +25,8 @@ const FilterMenuButton: React.FC<FilterMenuButtonProps> = ({
       // disableRipple
       // disableTouchRipple
     >
-      <KeyboardArrowDownIcon />
+      {/* KeyboardArrowDownIcon */}
+      <svg />
       {children}
     </button>
   );

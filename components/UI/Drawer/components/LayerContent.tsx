@@ -1,4 +1,3 @@
-import CloseIcon from "@mui/icons-material/Close";
 import styles from "../Drawer.module.css";
 import { useTranslation } from "next-i18next";
 import {
@@ -19,7 +18,8 @@ export const LayerContent = () => {
   return (
     <div className={styles.layerContent} role="presentation">
       <div>
-        <CloseIcon onClick={close} className={styles.closeButton} />
+        {/* CloseIcon */}
+        <svg onClick={close} className={styles.closeButton} />
         <p>{t("map.type")}</p>
         <div>
           <LayerButton

@@ -9,10 +9,8 @@ import { DeviceType } from "@/mocks/types";
 import { dataFetcher } from "@/services/dataFetcher";
 import { useMapActions, useDevice } from "@/stores/mapStore";
 import styles from "@/styles/Home.module.css";
-import Container from "@mui/material/Container";
 import dynamic from "next/dynamic";
 import Footer from "@/components/UI/Footer/Footer";
-import { Box } from "@mui/material";
 import HeadWithMeta from "@/components/base/HeadWithMeta/HeadWithMeta";
 import FilterMenu from "@/components/UI/FilterMenu/FilterMenu";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -96,7 +94,7 @@ export default function Home({ deviceType, singleItemDetail }: Props) {
     <>
       <HeadWithMeta singleItemDetail={singleItemDetail} />
       <main className={styles.main}>
-        <Container maxWidth={false} disableGutters>
+        <div>
           <RenderIf condition={!error}>
             <div
               style={{
@@ -134,47 +132,24 @@ export default function Home({ deviceType, singleItemDetail }: Props) {
               sahra_kitchen={sahraKitchenLocations}
               pharmacy={pharmacyLocations}
             />
-            <Box
-              sx={{
-                display: "flex",
-                padding: "0",
-                borderRadius: "10px",
-                position: "absolute",
-                bottom: isMobile ? "30px" : "90px",
-                right: isMobile ? "10px" : "26px",
-                zIndex: 500,
-              }}
-            >
+            <div>
               <LocaleSwitch
                 current={router.locale || "tr"}
                 onChange={onLanguageChange}
                 mobile={isMobile}
               />
-            </Box>
+            </div>
             {!isMobile && <SitesIcon></SitesIcon>}
-            <Box
-              sx={{
-                position: "fixed",
-                top: { md: "15px" },
-                bottom: { xs: "88px", md: "unset" },
-                left: "50%",
-                marginLeft: "-105px",
-                zIndex: "502",
-                display: "flex",
-                flexDirection: "column",
-                rowGap: "8px",
-                width: "210px",
-              }}
-            >
+            <div>
               <ScanAreaButton
                 isLoading={isLoading}
                 isValidating={isValidating}
                 slowLoading={slowLoading}
                 handleScanButtonClick={handleScanButtonClick}
               />
-            </Box>
+            </div>
           </RenderIf>
-        </Container>
+        </div>
         <Drawer />
         <ClusterPopup />
         <FooterBanner

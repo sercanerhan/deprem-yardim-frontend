@@ -1,6 +1,5 @@
 import RenderIf from "@/components/UI/Common/RenderIf";
 import useDisableZoom from "@/hooks/useDisableZoom";
-import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 import styles from "./FooterBanner.module.css";
 import { Trans } from "next-i18next";
 
@@ -26,7 +25,8 @@ export default function FooterBanner(props: FooterBannerProps) {
               />
             </span>
             <span className={styles.closeButton}>
-              <HighlightOffIcon onClick={props.onClick} />
+              {/* svg */}
+              <svg onClick={props.onClick} />
             </span>
           </span>
         </RenderIf>

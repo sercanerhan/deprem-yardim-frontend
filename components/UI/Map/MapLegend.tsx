@@ -1,10 +1,9 @@
-import { ArrowForwardIos } from "@mui/icons-material";
-import CloseIcon from "@mui/icons-material/Close";
-import { Button, ClickAwayListener, Popper, Typography } from "@mui/material";
 import { MouseEvent, useState } from "react";
 import { Tags } from "../Tag/Tag.types";
 import styles from "./Map.module.css";
 import { useTranslation } from "next-i18next";
+
+import { Popover } from "@headlessui/react";
 
 const MapLegend = () => {
   const { t } = useTranslation("home");
@@ -33,7 +32,7 @@ const MapLegend = () => {
       <div className={legendToggleStatusClass}>
         {Object.keys(Tags).map((intensity) => (
           <div key={intensity}>
-            <Button
+            <button
               className={styles.legend_item}
               aria-label={t(`tags.${Tags[intensity].intensity}`).toString()}
               onClick={(event) => handleClick(event, intensity)}
@@ -45,28 +44,28 @@ const MapLegend = () => {
               <span className={styles.legend_item__text}>
                 {t(`tags.${Tags[intensity].intensity}`)}
               </span>
-            </Button>
-            <Popper
+            </button>
+            <Popover
               id={id}
-              open={anchorEl?.id === intensity && !isLegendOpen}
-              anchorEl={anchorEl?.el}
-              sx={{ backgroundColor: "white", zIndex: 999, borderRadius: 2 }}
+              // open={anchorEl?.id === intensity && !isLegendOpen}
+              // anchorEl={anchorEl?.el}
             >
-              <ClickAwayListener onClickAway={() => setAnchorEl(null)}>
-                <Typography sx={{ p: 2 }}>
-                  {t(`tags.${Tags[intensity].intensity}`)}
-                </Typography>
-              </ClickAwayListener>
-            </Popper>
+              {/* onClickAway={() => setAnchorEl(null)} */}
+              <div>
+                <p>{t(`tags.${Tags[intensity].intensity}`)}</p>
+              </div>
+            </Popover>
           </div>
         ))}
         {isLegendOpen ? (
-          <CloseIcon
+          // Close
+          <svg
             color="action"
             onClick={() => setIsLegendOpen((previous) => !previous)}
           />
         ) : (
-          <ArrowForwardIos
+          // ArrowForward
+          <svg
             color="action"
             onClick={() => setIsLegendOpen((previous) => !previous)}
           />

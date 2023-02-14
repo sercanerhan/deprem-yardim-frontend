@@ -1,8 +1,8 @@
+/* eslint-disable no-unused-vars */
 import useDisableZoom from "@/hooks/useDisableZoom";
 import { useMapClickHandlers } from "@/hooks/useMapClickHandlers";
 import { useWindowSize } from "@/hooks/useWindowSize";
 import { useDrawerData, useIsDrawerOpen } from "@/stores/mapStore";
-import { default as MuiDrawer } from "@mui/material/Drawer";
 import { memo, MouseEvent, useCallback, useEffect, useMemo } from "react";
 import styles from "./Drawer.module.css";
 import { useUrlPath } from "@/hooks/useUrlPath";
@@ -19,10 +19,6 @@ const Drawer = () => {
   const router = useRouter();
   const { setUrlQuery } = useUrlPath();
   const size = useWindowSize();
-  const anchor = useMemo(
-    () => (size.width > 768 ? "left" : "bottom"),
-    [size.width]
-  );
   const { t } = useTranslation("home");
   const { enqueueInfo } = useSnackbar();
 
@@ -43,27 +39,20 @@ const Drawer = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, drawerData]);
 
-  const handleClose = useCallback(
-    (e: MouseEvent) => {
-      toggler(e);
-    },
-    [toggler]
-  );
-
   return (
     <div>
-      <MuiDrawer
+      <div
         className={styles.drawer}
-        anchor={anchor}
-        open={isOpen}
-        onClose={handleClose}
-        data-is-layer-drawer={!drawerData}
+        // anchor={anchor}
+        // open={isOpen}
+        // onClose={handleClose}
+        // data-is-layer-drawer={!drawerData}
       >
         {!!drawerData && (
           <Content drawerData={drawerData} onCopyBillboard={copyBillboard} />
         )}
         {!drawerData && <LayerContent />}
-      </MuiDrawer>
+      </div>
     </div>
   );
 };

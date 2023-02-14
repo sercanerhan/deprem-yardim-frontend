@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import { useSnackbar } from "@/components/base/Snackbar";
 // import { useWindowSize } from "@/hooks/useWindowSize";
 import { useMapActions, usePopUpData } from "@/stores/mapStore";
-import { Close } from "@mui/icons-material";
-import { IconButton } from "@mui/material";
 import formatcoords from "formatcoords";
 import { CopyButton } from "../Button/CopyButton";
 import { useTranslation } from "next-i18next";
@@ -52,9 +50,10 @@ const ClusterPopup = () => {
             </div>
           </div>
           <p>
-            <IconButton aria-label="close" onClick={() => setPopUpData(null)}>
-              <Close fontSize="small" />
-            </IconButton>
+            <div aria-label="close" onClick={() => setPopUpData(null)}>
+              {/* close */}
+              <svg fontSize="small" />
+            </div>
           </p>
         </div>
         <p>{formatcoords([lat, lng]).format()}</p>

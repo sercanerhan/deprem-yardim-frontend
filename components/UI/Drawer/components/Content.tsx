@@ -23,9 +23,6 @@ import {
 import { CloseByRecord } from "./OtherRecordsInSameLocation";
 import { useRouter } from "next/router";
 
-import CloseIcon from "@mui/icons-material/Close";
-import CircularProgress from "@mui/material/CircularProgress";
-
 export interface ContentProps {
   // eslint-disable-next-line no-unused-vars
   onCopyBillboard: (clipped: string) => void;
@@ -81,7 +78,8 @@ export const Content = ({ drawerData, onCopyBillboard }: ContentProps) => {
     <div role="presentation" onKeyDown={(e) => toggler(e)}>
       {isLoading && (
         <div>
-          <CircularProgress />
+          {/* Circular Progress */}
+          <div />
         </div>
       )}
       {error && <GenericError />}
@@ -156,7 +154,8 @@ export const Content = ({ drawerData, onCopyBillboard }: ContentProps) => {
 
       <CloseByRecord drawerData={drawerData} />
 
-      <CloseIcon onClick={(e) => toggler(e)} className={styles.closeButton} />
+      {/* Close */}
+      <svg onClick={(e) => toggler(e)} className={styles.closeButton} />
     </div>
   );
 };

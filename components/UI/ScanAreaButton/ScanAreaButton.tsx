@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "@mui/material/Button";
 import LoadingSpinner from "@/components/UI/Common/LoadingSpinner";
 import { useTranslation, Trans } from "next-i18next";
 
@@ -24,17 +23,13 @@ const ScanAreaButton = ({
 
   return (
     <>
-      <Button
-        color="secondary"
-        variant="contained"
-        onClick={handleScanButtonClick}
-      >
+      <button onClick={handleScanButtonClick}>
         {isLoading || isValidating ? (
           <LoadingSpinner slowLoading={slowLoading} />
         ) : (
           <span>{t("scanner.text")}</span>
         )}
-      </Button>
+      </button>
       <small className={styles.autoScanInfoTextIndex}>
         <Trans
           i18nKey="home:scanner.remaining"

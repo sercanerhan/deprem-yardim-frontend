@@ -6,8 +6,6 @@ import EmbedTweet from "./EmbedTweet";
 import styles from "./FeedChannelTwitter.module.css";
 import PlaceholderTweet from "./PlaceholderTweet";
 
-import { CopyAll } from "@mui/icons-material";
-
 import { Switch } from "@headlessui/react";
 
 const FeedChannelTwitter = ({
@@ -50,7 +48,8 @@ const FeedChannelTwitter = ({
       )}
       {!!full_text && (
         <button onClick={handleClickCopyFullText}>
-          <CopyAll className={styles.btnIcon} />
+          {/* copy all */}
+          <svg className={styles.btnIcon} />
 
           {t("cluster.copyFullText")}
         </button>
